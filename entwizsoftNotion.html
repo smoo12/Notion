@@ -103,8 +103,11 @@ body{
 </body>
 <script>
     const year = new Date().getFullYear();
-const myDate = new Date('Oct 15, 2024 00:00:00');
-console.log(myDate);
+const myDate = new Date('Jan 1, 2024 00:00:00');
+const utcOffset = 9 * 60; // KST (UTC+9) offset in minutes
+const kstDate = new Date(myDate.getTime() + utcOffset * 60000);
+// console.log(myDate);
+console.log(kstDate);
 
 // countdown
 let timer = setInterval(function() {
@@ -113,7 +116,8 @@ let timer = setInterval(function() {
   const today = new Date().getTime();
 
   // get the difference
-  const diff = myDate - today;
+  // const diff = myDate - today;
+  const diff = kstDate - today;
 
   // math
   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
