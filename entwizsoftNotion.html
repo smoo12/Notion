@@ -105,7 +105,8 @@ body{
     const year = new Date().getFullYear();
 const myDate = new Date('Jan 1, 2024 00:00:00');
 const utcOffset = 9 * 60; // KST (UTC+9) offset in minutes
-const kstDate = new Date(myDate.getTime() + utcOffset * 60000 * 60);
+// const kstDate = new Date(myDate.getTime() + utcOffset * 60000);
+const kstDate = new Date(utcOffset * 60000 * 60 - myDate.getTime());
 // console.log(myDate);
 console.log(kstDate);
 
