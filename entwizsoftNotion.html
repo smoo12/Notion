@@ -103,14 +103,9 @@ body{
 </body>
 <script>
     const year = new Date().getFullYear();
-    const now = new Date() // 서버 시간 기준 현재 로컬 시간
-    const gmtNow = now.getTime() + now.getTimezoneOffset() * 60 * 1000 // GMT 현재 시간
-    // now.getTime(): 1970년 1월 1일 00:00:00 GMT와 주어진 날짜까지의 시간을 밀리세컨드로 반환한다.
-    // now.getTimezoneOffset(): GMT 시간과 현지 시간의 차이를 분으로 반환한다. 시간이 더 앞에 있으면 음수가 된다.
-
-    const koreaTimeDiff = 9 * 60 * 60 * 1000 // 한국 시간은 GMT 시간보다 9시간 앞서 있다.
-    const koreaNow = new Date(gmtNow + koreaTimeDiff) // GMT 기준 한국 시간을 최종적으로 만들어 준다.
-
+const myDate = new Date('Jan 1, 2024 00:00:00');
+const utcOffset = 9 * 60; // KST (UTC+9) offset in minutes
+const kstDate = new Date(myDate.getTime() + utcOffset * 60000);
 // console.log(myDate);
 console.log(kstDate);
 
@@ -122,12 +117,7 @@ let timer = setInterval(function() {
 
   // get the difference
   // const diff = myDate - today;
-  // const diff = koreaNow - today;
-  // const diff = today - koreaNow;
-
-  // const diff = myDate + today;
-  // const diff = koreaNow + today;
-  const diff = today + koreaNow;
+  const diff = kstDate - today;
 
   // math
   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
